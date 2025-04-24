@@ -41,7 +41,7 @@
     <section class="section">
         <h2>Edit User</h2>
     <form action="edit-user.php?id=<?php echo $user['id']?>" method="post">
-        <div class="conatainer">
+        <div class="container">
             <label for="uname">Username</label>
             <input type="text" placeholder="Enter Username" name="username" required value="<?php echo $user['username'] ?>">
 

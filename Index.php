@@ -1,12 +1,22 @@
 <?php
-include("config/database.php");
+    include("config/database.php");
 
-if(isset($_POST['submit'])){
-    extract($_POST);
-
-    echo $sql = "SELECT from users where username = '$username' AND password = '$password'";
-    exit;
-}
+ ##Login form submit
+    if(isset($_POST['submit'])){
+        extract($_POST);
+    ## Sql query to login    
+        
+    $sql = "SELECT *FROM users where username = '$username' AND password ='$password'";
+    $result = $conn->query($sql);
+    if($result->num_rows){
+       $_SESSION['is_user_loggedin'] = true;
+       $_SESSION['user_data'] = mysqli_fetch_assoc($result);
+       header("location: users.php");
+    } 
+    else{
+        $_SESSION['error'] = "Invalid login Info";
+    }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -19,9 +29,10 @@ if(isset($_POST['submit'])){
 </head>
 <body>
     <section class="section">
+        <?php include("alert.php")?>
         <h2>Login Form</h2>
-    <form action="add-user.php" method="post">
-        <div class="conatainer">
+    <form action="index.php" method="post">
+        <div class="container">
             <label for="uname">Username<br></label>
             <input type="text" placeholder="Enter Username" name="username" required>
 

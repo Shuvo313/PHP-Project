@@ -9,8 +9,9 @@
         extract($_POST);
         
         $date = date("Y-m-d H:i:s");
+        $pass = md5($password);
         $sql = "insert into users(username, password, created_at) values
-        ('$username','$password','$date')";
+        ('$username','$pass','$date')";
 
         $result = $conn->query($sql);
         if($result){

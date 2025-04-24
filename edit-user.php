@@ -17,8 +17,8 @@
     if(isset($_POST['submit'])){
         extract($_POST);
         
-        $sql = "UPDATE users SET username = '$username',password = '$password' where id = ".$_GET['id'];
-
+        //$sql = "UPDATE users SET username = '$username',password = '$password' where id = ".$_GET['id'];
+        $sql = "UPDATE users SET username = '$username' where id = ".$_GET['id'];
         $result = $conn->query($sql);
         if($result){
             echo "User data has been updated";
@@ -45,8 +45,8 @@
             <label for="uname">Username</label>
             <input type="text" placeholder="Enter Username" name="username" required value="<?php echo $user['username'] ?>">
 
-            <label for="pwd">Password</label>
-            <input type="password" placeholder="Enter Password" name="password" required value="<?php echo $user['password'] ?>">
+            <!-- <label for="pwd">Password</label>
+            <input type="password" placeholder="Enter Password" name="password" required value="<?php echo $user['password'] ?>"> -->
 
            <button type="submit" name="submit">Update</button>
         </div>

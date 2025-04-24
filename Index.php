@@ -1,12 +1,14 @@
 <?php
     include("config/database.php");
 
- ##Login form submit
+    ##Login form submit
+
     if(isset($_POST['submit'])){
         extract($_POST);
+    
     ## Sql query to login    
         
-    $sql = "SELECT *FROM users where username = '$username' AND password ='$password'";
+    $sql = "SELECT * FROM users where username = '$username' AND password ='$password'";
     $result = $conn->query($sql);
     if($result->num_rows){
        $_SESSION['is_user_loggedin'] = true;
@@ -29,7 +31,7 @@
 </head>
 <body>
     <section class="section">
-        <?php include("alert.php")?>
+        <?php include("include/alert.php")?>
         <h2>Login Form</h2>
     <form action="index.php" method="post">
         <div class="container">
